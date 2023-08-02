@@ -303,6 +303,15 @@
                   </tr>
                 </thead>
                 <tbody data-bd="csmedipres" class="tdobyprev">
+                    <tr data-id="0">
+                        <th scope="row"></th>
+                        <td colspan="2" class="align-middle">No Aplicó la Prueba</td>
+                        <td colspan="1" class="align-middle">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input switchclass" type="checkbox" id="flexSwitchCheckDefault" >
+                            </div>
+                        </td>
+                    </tr>
                     <tr data-id="1">
                         <th scope="row">1</th>
                         <td>Explica brevemente a la/al entrevistada/o los pasos y recomendaciones a seguir en la medición de la presión arterial.</td>
@@ -406,6 +415,15 @@
                     </tr>
                 </thead>
                 <tbody data-bd="chantrohemo" class="tdobyprev">
+                    <tr data-id="0">
+                        <th scope="row"></th>
+                        <td colspan="2" class="align-middle">No Aplicó la Prueba</td>
+                        <td colspan="1" class="align-middle">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input switchclass" type="checkbox" id="flexSwitchCheckDefault" >
+                            </div>
+                        </td>
+                    </tr>
                     <tr data-id="lp1">
                         <th scope="row">1</th>
                         <td>Colabora con la antropometrista para quitar los zapatos, gorros, moños, ganchos y en el objetivo que el menor tenga la menor cantidad de ropa posible</td>
@@ -544,6 +562,15 @@
                     </tr>
                 </thead>
                 <tbody data-bd="chantrohemo" class="tdobyprev">
+                    <tr data-id="0">
+                        <th scope="row"></th>
+                        <td colspan="2" class="align-middle">No Aplicó la Prueba</td>
+                        <td colspan="1" class="align-middle">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input switchclass" type="checkbox" id="flexSwitchCheckDefault" >
+                            </div>
+                        </td>
+                    </tr>
                     <tr data-id="ep1">
                         <th scope="row">1</th>
                         <td>Sujeta y levanta al niñ@ por el torso y debajo de los brazos para que la antropometrista lo pueda ubicar al centro de la balanza.</td>
@@ -696,6 +723,15 @@
                     </tr>
                 </thead>
                 <tbody data-bd="chantrohemo" class="tdobyprev">
+                    <tr data-id="0">
+                        <th scope="row"></th>
+                        <td colspan="2" class="align-middle">No Aplicó la Prueba</td>
+                        <td colspan="1" class="align-middle">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input switchclass" type="checkbox" id="flexSwitchCheckDefault" >
+                            </div>
+                        </td>
+                    </tr>
                     <tr data-id="dh1">
                         <th scope="row">1</th>
                         <td>Se calza los guantes antes de sujetar la pierna del niñ@ (menor de 1 año) o antes de sujetar el brazo, codo, muñeca y/o dedos del niñ@ (de un año a más).</td>
@@ -750,6 +786,15 @@
                     </tr>
                 </thead>
                 <tbody data-bd="chantrohemo" class="tdobyprev">
+                    <tr data-id="0">
+                        <th scope="row"></th>
+                        <td colspan="2" class="align-middle">No Aplicó la Prueba</td>
+                        <td colspan="1" class="align-middle">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input switchclass" type="checkbox" id="flexSwitchCheckDefault" >
+                            </div>
+                        </td>
+                    </tr>
                     <tr data-id="pa1">
                         <th scope="row">1</th>
                         <td>Apoya a sujetar el polo levantado con los ganchos.	</td>
@@ -909,6 +954,15 @@
                     </tr>
                 </thead>
                 <tbody data-bd="chyodoclo" class="tdobyprev">
+                    <tr data-id="0">
+                        <th scope="row"></th>
+                        <td colspan="2" class="align-middle">No Aplicó la Prueba</td>
+                        <td colspan="1" class="align-middle">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input switchclass" type="checkbox" id="flexSwitchCheckDefault" >
+                            </div>
+                        </td>
+                    </tr>
                     <tr data-id="ys1">
                         <th scope="row">1</th>
                         <td>Solicita adecuadamente el envase de la sal para cocinar.	</td>
@@ -1006,6 +1060,15 @@
                     </tr>
                 </thead>
                 <tbody data-bd="chyodoclo" class="tdobyprev">
+                    <tr data-id="0">
+                        <th scope="row"></th>
+                        <td colspan="2" class="align-middle">No Aplicó la Prueba</td>
+                        <td colspan="1" class="align-middle">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input switchclass" type="checkbox" id="flexSwitchCheckDefault" >
+                            </div>
+                        </td>
+                    </tr>
                     <tr data-id="pc1">
                         <th scope="row">1</th>
                         <td>Solicita ingresar a la vivienda para obtener la muestra de agua.	</td>
@@ -1146,7 +1209,278 @@
     </div>
     <script src="../recursos/js/bootstrap.min.js" ></script>
     <script>
-function obtenerDatosLogin(){indexedDB.open("miBaseDeDatos2",1).onsuccess=function(e){var t=e.target.result.transaction(["usuariosbd"],"readonly").objectStore("usuariosbd").getAll();t.onsuccess=function(e){var t=e.target.result;console.log("Datos obtenidos.usu...:",t),document.querySelector("#nomencu").textContent=t[0].nomencu,document.querySelector("#nomeconglo").textContent=t[0].codconglo,document.querySelector("#nomevivi").textContent=t[0].codvivi,document.querySelector("#nomehog").textContent=t[0].codhog},t.onerror=function(e){console.log("Error al obtener los datos")}}}function obtenerDatos(e,t,o){indexedDB.open("miBaseDeDatos2",1).onsuccess=function(r){var n=r.target.result.transaction([e],"readonly").objectStore(e).getAll();n.onsuccess=function(r){var n=r.target.result;if(console.log("Datos obtenidos....:",n),document.querySelectorAll(".switchclass").forEach((t=>{n.forEach((o=>{o.id==t.closest("tr").getAttribute("data-id")&&1==o.noaplico&&t.closest("tbody").getAttribute("data-bd")==e&&(t.checked=!0)}))})),t){let e=(n=r.target.result).filter((e=>e.id==o));document.querySelector("#observacion").value=e[0].obs,console.log("es el filtro",e)}},n.onerror=function(e){console.log("Error al obtener los datos")}}}function agregarDatosv2(e,t){indexedDB.open("miBaseDeDatos2",1).onsuccess=function(o){var r=o.target.result.transaction([t],"readwrite").objectStore(t),n="";r.getAll().onsuccess=function(t){t.target.result,n={id:e,noaplico:1,obs:""};var o=r.add(n);o.onsuccess=function(e){console.log("Datos agregados correctamente")},o.onerror=function(e){console.log("Error al agregar los datos")}}}}function limpiarEdit(){document.querySelector("#observacion").value=""}function editarEstado(e,t,o){const r=indexedDB.open("miBaseDeDatos2",1);r.onerror=function(e){console.error("Database error: "+e.target.errorCode)},r.onsuccess=function(r){const n=r.target.result.transaction([o],"readwrite").objectStore(o),c=n.get(e);c.onerror=function(e){console.error("Error retrieving record: "+e.target.errorCode)},c.onsuccess=function(e){const o=e.target.result;document.querySelector("#observacion");console.log(o.obs,o.noaplico);let r=t;o.noaplico=r?1:0;const c=n.put(o);c.onerror=function(e){console.error("Error updating record: "+e.target.errorCode)},c.onsuccess=function(e){console.log("Record updated successfully")}}}}function editarRegistro(e,t){const o=indexedDB.open("miBaseDeDatos2",1);o.onerror=function(e){console.error("Database error: "+e.target.errorCode)},o.onsuccess=function(o){const r=o.target.result.transaction([t],"readwrite").objectStore(t),n=r.get(e);n.onerror=function(e){console.error("Error retrieving record: "+e.target.errorCode)},n.onsuccess=function(e){const t=e.target.result;let o=document.querySelector("#observacion");t.obs=o.value;const n=r.put(t);n.onerror=function(e){console.error("Error updating record: "+e.target.errorCode)},n.onsuccess=function(e){console.log("Record updated successfully")}}}}obtenerDatosLogin(),obtenerDatos("csmedipres",!1,""),obtenerDatos("chantrohemo",!1,""),obtenerDatos("chyodoclo",!1,""),document.querySelector("#guardaredit").addEventListener("click",(e=>{document.querySelector("#observacion");let t=document.querySelector("#guardaredit").getAttribute("data-bd");editarRegistro(document.querySelector("#guardaredit").getAttribute("data-id"),t)})),document.querySelector(".table-responsive").addEventListener("click",(e=>{if("INPUT"==e.target.nodeName){console.log(e.target.checked);let t=e.target.closest(".tdobyprev").getAttribute("data-bd"),o=e.target.closest("tr").getAttribute("data-id");agregarDatosv2(o,t),editarEstado(o,e.target.checked,t)}"svg"!=e.target.nodeName&&"path"!=e.target.nodeName&&"BUTTON"!=e.target.nodeName||(limpiarEdit(),document.querySelector("#modalTitle").textContent=e.target.closest("tr").firstElementChild.nextElementSibling.textContent,document.querySelector("#guardaredit").setAttribute("data-bd",e.target.closest(".tdobyprev").getAttribute("data-bd")),document.querySelector("#guardaredit").setAttribute("data-id",e.target.closest("tr").getAttribute("data-id")),obtenerDatos(e.target.closest(".tdobyprev").getAttribute("data-bd"),!0,e.target.closest("tr").getAttribute("data-id")))}));
+
+        // Obtener datos 
+        function obtenerDatosLogin() {
+            // Abrir la base de datos
+            var request = indexedDB.open("miBaseDeDatos2", 1);
+
+            request.onsuccess = function(event) {
+                var db = event.target.result;
+
+                // Iniciar una transacción de lectura
+                var transaction = db.transaction(["usuariosbd"], "readonly");
+
+                // Obtener el almacén de objetos
+                var objectStore = transaction.objectStore("usuariosbd");
+
+                // Obtener todos los objetos del almacén
+                var requestGetAll = objectStore.getAll();
+
+
+                requestGetAll.onsuccess = function(event) {
+                    var data = event.target.result;
+                    console.log("Datos obtenidos.usu...:", data);
+
+                    document.querySelector("#nomencu").textContent = data[0].nomencu
+                    document.querySelector("#nomeconglo").textContent = data[0].codconglo
+                    document.querySelector("#nomevivi").textContent = data[0].codvivi
+                    document.querySelector("#nomehog").textContent = data[0].codhog
+                    
+                };
+
+                requestGetAll.onerror = function(event) {
+                console.log("Error al obtener los datos");
+                };
+            };
+        }
+
+        obtenerDatosLogin()
+
+
+        function obtenerDatos(linkBase, booleano, regedit) {
+            // Abrir la base de datos
+            var request = indexedDB.open("miBaseDeDatos2", 1);
+
+            request.onsuccess = function(event) {
+                var db = event.target.result;
+
+                // Iniciar una transacción de lectura
+                var transaction = db.transaction([linkBase], "readonly");
+
+                // Obtener el almacén de objetos
+                var objectStore = transaction.objectStore(linkBase);
+
+                // Obtener todos los objetos del almacén
+                var requestGetAll = objectStore.getAll();
+
+
+                requestGetAll.onsuccess = function(event) {
+                    var data = event.target.result;
+                    console.log("Datos obtenidos....:", data);
+
+                    let checks = document.querySelectorAll(".switchclass")
+                    //console.log(checks)
+                    checks.forEach(el => {
+                        //console.log(el.closest("tbody").getAttribute("data-bd"))
+                        data.forEach(eli => {
+                            //console.log(eli.id)
+                            if(eli.id == el.closest("tr").getAttribute("data-id") && eli.noaplico == 1 && el.closest("tbody").getAttribute("data-bd") == linkBase ){
+                                el.checked = true
+                            }
+                        });
+                    });
+
+                    if(booleano){
+                        var data = event.target.result;
+                        //console.log("rrrrrr",busquedaid)
+                        let filtro = data.filter(el=> el.id == regedit) 
+
+                        let obs = document.querySelector("#observacion")
+                        obs.value = filtro[0].obs
+                        console.log("es el filtro",filtro)
+                    }
+
+                };
+
+                requestGetAll.onerror = function(event) {
+                console.log("Error al obtener los datos");
+                };
+            };
+        }
+
+        obtenerDatos("csmedipres", false, "")
+        obtenerDatos("chantrohemo", false, "")
+        obtenerDatos("chyodoclo", false, "")
+
+
+
+        // Añadir datos a la base de datos
+        function agregarDatosv2(preg, linkBase) {
+            // Abrir la base de datos
+            var request = indexedDB.open("miBaseDeDatos2", 1);
+
+            request.onsuccess = function(event) {
+                var db = event.target.result;
+
+                // Iniciar una transacción de escritura
+                var transaction = db.transaction([linkBase], "readwrite");
+
+                // Obtener el almacén de objetos
+                var objectStore = transaction.objectStore(linkBase);
+
+
+                var data = ''
+                var objeto = ''
+                //obtengo todos los valores
+                var requestGetAll = objectStore.getAll();
+                requestGetAll.onsuccess = function(event) {
+                    data = event.target.result;
+                    //console.log("Datos obtenidos desde agregar:", data.length);
+
+                    // Crear un objeto para almacenar en el almacén
+                    objeto = { id: preg , noaplico: 1
+                                        , obs: "" };
+
+                    // Añadir el objeto al almacén
+                    var requestAdd = objectStore.add(objeto);
+
+                    requestAdd.onsuccess = function(event) {
+                    console.log("Datos agregados correctamente");
+                    };
+
+                    requestAdd.onerror = function(event) {
+                    console.log("Error al agregar los datos");
+                    };
+                };
+            
+                
+            };
+        }
+
+        function limpiarEdit(){
+            document.querySelector("#observacion").value = ""  //busquedaid
+        }
+
+        function editarEstado(registro,estado,linkBase) {
+            // Open a connection to the IndexedDB database
+            const request = indexedDB.open('miBaseDeDatos2', 1);
+
+            request.onerror = function(event) {
+                console.error('Database error: ' + event.target.errorCode);
+            };
+
+            request.onsuccess = function(event) {
+                const db = event.target.result;
+
+                // Create a transaction to perform the update operation
+                const transaction = db.transaction([linkBase], 'readwrite');
+                const objectStore = transaction.objectStore(linkBase);
+
+                // Retrieve the record you want to update
+                const getRequest = objectStore.get(registro);
+
+                getRequest.onerror = function(event) {
+                    console.error('Error retrieving record: ' + event.target.errorCode);
+                };
+
+                getRequest.onsuccess = function(event) {
+                    const record = event.target.result;
+
+                    let textarea = document.querySelector("#observacion")
+                    console.log(record.obs, record.noaplico)
+
+                    let omi = estado
+
+                    record.noaplico = omi?1:0
+
+                    // Update the record in the object store
+                    const updateRequest = objectStore.put(record);
+
+                    updateRequest.onerror = function(event) {
+                    console.error('Error updating record: ' + event.target.errorCode);
+                    };
+
+                    updateRequest.onsuccess = function(event) {
+                    console.log('Record updated successfully');
+                    //limpiarEdit()
+                    };
+                };
+            };
+        }
+
+
+        function editarRegistro(registro,linkBase) {
+            // Open a connection to the IndexedDB database
+            const request = indexedDB.open('miBaseDeDatos2', 1);
+
+            request.onerror = function(event) {
+                console.error('Database error: ' + event.target.errorCode);
+            };
+
+            request.onsuccess = function(event) {
+                const db = event.target.result;
+
+                // Create a transaction to perform the update operation
+                const transaction = db.transaction([linkBase], 'readwrite');
+                const objectStore = transaction.objectStore(linkBase);
+
+                // Retrieve the record you want to update
+                const getRequest = objectStore.get(registro);
+
+                getRequest.onerror = function(event) {
+                    console.error('Error retrieving record: ' + event.target.errorCode);
+                };
+
+                getRequest.onsuccess = function(event) {
+                    const record = event.target.result;
+
+                    let textarea = document.querySelector("#observacion")
+                    
+                    record.obs = textarea.value
+                    // Update the record in the object store
+                    const updateRequest = objectStore.put(record);
+
+                    updateRequest.onerror = function(event) {
+                    console.error('Error updating record: ' + event.target.errorCode);
+                    };
+
+                    updateRequest.onsuccess = function(event) {
+                    console.log('Record updated successfully');
+                    //limpiarEdit()
+                    };
+                };
+            };
+        }
+
+        document.querySelector("#guardaredit").addEventListener('click', e=>{
+            let obs = document.querySelector("#observacion")
+            
+            let valor =  document.querySelector("#guardaredit").getAttribute("data-bd")
+            let preg = document.querySelector("#guardaredit").getAttribute("data-id")
+            editarRegistro(preg, valor)
+            
+        })
+
+
+
+        //funcion click pregunta
+
+        document.querySelector(".table-responsive").addEventListener("click", e=>{
+            //console.log(e.target.nodeName)
+            if(e.target.nodeName == 'INPUT'){
+                console.log(e.target.checked)
+                let valor =  e.target.closest(".tdobyprev").getAttribute("data-bd")
+                let preg = e.target.closest("tr").getAttribute("data-id")
+                //document.querySelector("#guardaredit").setAttribute("estado",e.target.checked)
+                agregarDatosv2(preg, valor)
+                editarEstado(preg,e.target.checked, valor)
+            }
+
+            if(e.target.nodeName == 'svg' || e.target.nodeName == 'path' || e.target.nodeName == 'BUTTON'  ){
+                limpiarEdit()
+                //console.log(e.target.closest("tr").firstElementChild.nextElementSibling.textContent)
+
+                document.querySelector("#modalTitle").textContent = e.target.closest("tr").firstElementChild.nextElementSibling.textContent
+
+                document.querySelector("#guardaredit").setAttribute("data-bd",e.target.closest(".tdobyprev").getAttribute("data-bd"))
+                document.querySelector("#guardaredit").setAttribute("data-id",e.target.closest("tr").getAttribute("data-id"))
+
+                obtenerDatos( e.target.closest(".tdobyprev").getAttribute("data-bd"), true ,e.target.closest("tr").getAttribute("data-id"))
+            }
+
+        })
+
 
     </script>
 </body>
