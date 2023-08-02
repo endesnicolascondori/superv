@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>observer imagenes</title>
+
+    <link href="../recursos/css/bootstrap.min.css" rel="stylesheet" >
+
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            box-sizing: border-box;
+        }
+
+
+        #image-container {
+          height: 100vh;
+          overflow: auto;
+        }
+    
+        .image img {
+            width: 100%;
+            /* object-fit: cover; */
+        }
+
+        .image {
+          height: 100%; 
+          margin-bottom: 20px;
+          background-color: lightgray;
+          /* background-image: none!important; */
+          display: flex;  
+        }
+
+
+        /* *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        } */
+        button.btn.rounded-circle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            fill: white;
+            width: 40px;
+            height: 40px;
+        }
+
+        .caja {
+            position: relative;
+        }
+
+        div.posicionboton {
+            position: absolute;
+            /* transform: translate(0, -50%); */
+            right: 0.3rem;
+            top: 0.3rem;
+            /* opacity: 0.75; */
+        }
+        .caja {
+            display: grid;
+            grid-template-columns: 1fr 10fr;
+        }
+
+        .dev {
+            height: 100vh;
+            overflow-y: scroll;
+            width: 100%;
+        }
+
+
+        button.btn.btn-sm.btn-danger {
+            fill: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2px;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            margin-top: 0.3rem;
+        }
+        .input-group-text {
+            justify-content: space-between;
+            background-color: #bfbfbf;
+            /* border: 0;
+            border-radius: 0;
+            border-bottom: 1px solid white; */
+            grid-gap: 0.2rem;
+            padding: 0.375rem 0.4rem!important;
+            flex-direction: column;
+        }
+        /* .caj{
+            display: flex;
+        } */
+
+        .form-check-input {
+            width: 1.4em;
+            height: 1.4em;
+        }
+
+
+
+
+        /******/
+
+
+        .dropdown-toggle::before{
+            content: none!important;
+        }
+
+        /* .accordion-button {
+            padding: 0.4rem!important;
+        } */
+
+        .accordion-button::after {
+
+            transform: scale(0.6)!important;
+        }
+
+        .dropdown-menu {
+            min-width: 13rem!important;
+        }
+
+        .accordion-body {
+            padding: 0;
+        }
+        li.list-group-item {
+            font-size: 0.8rem;
+        }
+
+
+        button#dropdownMenuClickableInside {
+            display: flex;
+            background-color: #db69a2;
+            padding: 10px;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            align-items: center;
+            justify-content: center;
+            border: none;
+        }
+
+
+
+        .accordion-button:not(.collapsed) {
+            color: #ffffff;
+            background-color: #db69a2;
+            box-shadow: inset 0 -1px 0 rgba(0,0,0,.125);
+        }
+
+        .btn-danger {
+            color: #fff;
+            background-color: #db69a2;
+            border-color: #db69a2;
+        }
+
+        .btn-danger:hover {
+            color: #fff;
+            background-color: #db69a2;
+            border-color: #db69a2;
+        }
+
+        .form-check-input:checked {
+            background-color: #573b8a;
+            border-color: #573b8a;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background-color: #573b8a;
+            border-color: #573b8a;
+        }
+        .btn-primary:hover {
+            color: #fff;
+            background-color: #573b8a;
+            border-color: #573b8a;
+        }
+
+        .list-group-item {
+            padding:0px;
+        }
+
+        .dropdown-item:focus, .dropdown-item:hover {
+            color: #1e2125;
+            background-color: #dc35452b;
+        }
+
+        .accordion-button::after {
+            filter: invert(1);
+        }
+
+        .dropdown-item {
+            padding: 0.5rem 1.5rem;
+        }
+
+        .col.flex {
+            display: flex;
+            flex-direction: column;
+            grid-gap: 0.4rem;
+        }
+
+
+
+        .form-check.espa {
+            display: flex;
+            grid-gap: 0.5rem;
+            align-items: center;
+        }
+
+
+        nav.navbar.navbar-light.bg-light {
+            grid-column-start: 1;
+            grid-column-end: 3;
+            position: absolute;
+            width: 100%;
+        }
+        ol.breadcrumb {
+            align-items: center;
+            font-size: 0.8rem;
+            margin-bottom: 0px;
+        }
+
+
+        @media only screen and (max-width: 420px) {
+            /* .main {
+                width: 85%;
+            } */
+            ol.breadcrumb {
+                font-size: 0.5rem;
+            }
+            .navbar-brand {
+                margin-right: 0px!important;
+            }
+ 
+        }
+
+        th, td {
+            text-align: center;
+        }
+
+        thead {
+            font-size: 0.9rem;
+        }
+      </style>
+</head>
+<body>
+    
+    <div class="caja">
+        <nav class="navbar navbar-light bg-light">
+            <div class="container">
+              <a class="navbar-brand" href="index5.html">
+                <!-- <img src="https://aplications.inei.gob.pe/WebEndesEncuesta/public/img/endes_logo.png" alt="" width="30" height="30"> -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                    <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                </svg>
+              </a>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item" id="nomencu">SANDY GABRIELA ALVA CACHIQUE</li>
+                  <li class="breadcrumb-item" id="nomeconglo">4268</li>
+                  <li class="breadcrumb-item" id="nomevivi">001</li>
+                  <li class="breadcrumb-item" id="nomehog">01</li>
+                </ol>
+              </nav>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container mb-5">-</div>
+    <div class="container mt-5" id="cajaconteos">
+        <!-- <div class="table-responsive">
+            <table class="table align-middle">
+                <thead class="table-dark">
+                <tr >
+                    <th colspan="10">Cuestionario del Hogar</th>
+                </tr>
+                <tr>
+                    <th scope="col">Secciones</th>
+                    <th scope="col">Omi. F.</th>
+                    <th scope="col">Fra. I.</th>
+                    <th scope="col">Reg. I.</th>
+                    <th scope="col">Omi. F.</th>
+                    <th scope="col">Fra. I.</th>
+                    <th scope="col">Reg. I.</th>
+                    <th scope="col">Fra. I.</th>
+                    <th scope="col">Reg. I.</th>
+                    <th scope="col">Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Seccion 1</th>
+                        <td>4</td>
+                        <td>2</td>
+                        <td>5</td>
+                        <td>4</td>
+                        <td>2</td>
+                        <td>5</td>
+                        <td>4</td>
+                        <td>2</td>
+                        <td>30</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Seccion 2</th>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>4</td>
+                        <td>2</td>
+                        <td>5</td>
+                        <td>4</td>
+                        <td>2</td>
+                        <td>30</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Seccion 3</th>
+                        <td >4</td>
+                        <td>3</td>
+                        <td>7</td>
+                        <td>4</td>
+                        <td>2</td>
+                        <td>5</td>
+                        <td>4</td>
+                        <td>2</td>
+                        <td>30</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> -->
+    </div>
+
+
+    <script src="../recursos/js/bootstrap.min.js" ></script>
+    <script>
+
+function obtenerDatosLogin(){indexedDB.open("miBaseDeDatos2",1).onsuccess=function(o){var t=o.target.result.transaction(["usuariosbd"],"readonly").objectStore("usuariosbd").getAll();t.onsuccess=function(o){var t=o.target.result;console.log("Datos obtenidos.usu...:",t),document.querySelector("#nomencu").textContent=t[0].nomencu,document.querySelector("#nomeconglo").textContent=t[0].codconglo,document.querySelector("#nomevivi").textContent=t[0].codvivi,document.querySelector("#nomehog").textContent=t[0].codhog},t.onerror=function(o){console.log("Error al obtener los datos")}}}function obtenerDatosFinal(){var o=indexedDB.open("miBaseDeDatos2",1);o.onerror=function(o){console.log("Error al abrir la base de datos")},o.onsuccess=function(o){var t=o.target.result,e=Array.from(t.objectStoreNames),n=t.transaction(e,"readonly"),r={},s=e.length,c=0;e.forEach((function(o){var t=n.objectStore(o).getAll();t.onsuccess=function(t){if(r[o]=t.target.result,++c===s){console.log("datos getttt",r);let o=document.querySelector("#cajaconteos");Object.entries(r).forEach((([t,e])=>{let n=[];e.forEach((o=>{0==o.consistenciai&&0==o.errorc&&0==o.fraseo&&0==o.inducer&&0==o.nrcons&&0==o.omit&&0==o.registroi&&0==o.sondeoi||n.push(o)}));let r=creaTabla(t,n);"usuariosbd"!=t&&"usuariosfinalbd"!=t&&"csmedipres"!=t&&"chantrohemo"!=t&&"chyodoclo"!=t&&"antromediantro"!=t&&"antrohemoglo"!=t&&"antromanequip"!=t&&"antrodiagnos"!=t&&n.length>0&&o.insertAdjacentHTML("beforeend",r)}))}},t.onerror=function(t){console.log("Error al obtener los datos del object store: "+o)}}))}}function creaTabla(o,t){return html=`<div class="table-responsive">\n            <table class="table align-middle">\n                <thead >\n                <tr style="color: white; background: ${"ch"==o.substring(0,2)?"#DFBF2E":"ci"==o.substring(0,2)?"#C03731":"cs"==o.substring(0,2)?"#57892D":"#DFBF2E"};">\n                    <th colspan="10">Cuestionario ${"ch"==o.substring(0,2)?"Hogar":"ci"==o.substring(0,2)?"Individual":"cs"==o.substring(0,2)?"Salud":"Hogar"} - ${o}</th>\n                </tr>\n                <tr class="table-dark">\n                    <th scope="col">Preguntas</th>\n                    <th scope="col">Omi. F.</th>\n                    <th scope="col">Fra. I.</th>\n                    <th scope="col">Reg. I.</th>\n                    <th scope="col">Omi. F.</th>\n                    <th scope="col">Fra. I.</th>\n                    <th scope="col">Reg. I.</th>\n                    <th scope="col">Fra. I.</th>\n                    <th scope="col">Reg. I.</th>\n                    <th scope="col">Observación</th>\n                </tr>\n                </thead>\n                <tbody>\n                    ${t.map((o=>`<tr>\n                                        <td>${o.id}</td>\n                                        <td>${0==o.omit?"No":"<b style=color:red;>Si</b>"}</td>\n                                        <td>${0==o.fraseo?"No":"<b style=color:red;>Si</b>"}</td>\n                                        <td>${0==o.registroi?"No":"<b style=color:red;>Si</b>"}</td>\n                                        <td>${0==o.errorc?"No":"<b style=color:red;>Si</b>"}</td>\n                                        <td>${0==o.sondeoi?"No":"<b style=color:red;>Si</b>"}</td>\n                                        <td>${0==o.inducer?"No":"<b style=color:red;>Si</b>"}</td>\n                                        <td>${0==o.nrcons?"No":"<b style=color:red;>Si</b>"}</td>\n                                        <td>${0==o.consistenciai?"No":"<b style=color:red;>Si</b>"}</td>\n                                        <td>${o.obs}</td>\n                                      </tr>`)).join("")}\n                </tbody>\n            </table>\n        </div>`}obtenerDatosLogin(),obtenerDatosFinal();
+
+    </script>
+</body>
+</html>

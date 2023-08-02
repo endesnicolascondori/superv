@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" rel="stylesheet" >
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Jost', sans-serif;
+            /* background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e); */
+            background: linear-gradient(180deg, #7a1036d9, #db69a2, #c7abb9);
+        }
+        .main{
+            width: 70%;
+            height: 670px;
+            /* background: red; */
+            overflow: hidden;
+            /* background: url("https://doc-08-2c-docs.googleusercontent.com/docs/securesc/68c90smiglihng9534mvqmq1946dmis5/fo0picsp1nhiucmc0l25s29respgpr4j/1631524275000/03522360960922298374/03522360960922298374/1Sx0jhdpEpnNIydS4rnN4kHSJtU1EyWka?e=view&authuser=0&nonce=gcrocepgbb17m&user=03522360960922298374&hash=tfhgbs86ka6divo3llbvp93mg4csvb38") no-repeat center/ cover; */
+            border-radius: 10px;
+            box-shadow: 5px 20px 50px #000;
+        }
+        #chk{
+            display: none;
+        }
+        .signup{
+            position: relative;
+            width:100%;
+            height: 100%;
+        }
+        label{
+            color: #fff;
+            font-size: 2.3em;
+            justify-content: center;
+            display: flex;
+            margin: 60px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .5s ease-in-out;
+        }
+        input{
+            width: 84%;
+            height: 20px;
+            background: #e0dede;
+            justify-content: center;
+            display: flex;
+            margin: 20px auto;
+            padding: 10px;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+        }
+        button{
+            width: 88%;
+            height: 40px;
+            margin: 10px auto;
+            justify-content: center;
+            display: block;
+            color: #fff;
+            background: #573b8a;
+            font-size: 1em;
+            font-weight: bold;
+            margin-top: 20px;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            transition: .2s ease-in;
+            cursor: pointer;
+        }
+        button:hover{
+            background: #6d44b8;
+        }
+        .login{
+            height: 460px;
+            background: #eee;
+            border-radius: 60% / 10%;
+            transform: translateY(-180px);
+            transition: .8s ease-in-out;
+        }
+        .login label{
+            color: #573b8a;
+            transform: scale(.6);
+        }
+
+        #chk:checked ~ .login{
+            transform: translateY(-500px);
+        }
+        #chk:checked ~ .login label{
+            transform: scale(1);	
+        }
+        #chk:checked ~ .signup label{
+            transform: scale(.6);
+        }
+
+        .seleclas{
+            width: 88%;
+            background: #e0dede;
+            justify-content: center;
+            display: flex;
+            margin: 20px auto;
+            padding: 10px;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+        }
+
+
+        
+        img#logoimg {
+            width: 128px;
+            height: 128px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        @media only screen and (max-width: 420px) {
+            .main {
+                width: 85%;
+            }
+            /* ol.breadcrumb {
+                font-size: 0.7rem;
+            } */
+        }
+      
+
+        option.antro {
+            background: #573b8a;
+            color: white;
+        }
+
+    </style>
+    <link rel="manifest" href="manifest.json">
+    
+</head>
+<body>
+	<div class="main">  	
+		<input type="checkbox" id="chk" aria-hidden="true">
+
+			<div class="signup">
+				<form>
+					<label for="chk" aria-hidden="true"><img src="recursos/girl.png" alt="Girl in a jacket" id="logoimg" ></label>
+					<input type="text" name="txt" placeholder="Nombre Supervisora" required="" disabled value="" id="nomsup" data-dni="">
+                    <input type="hidden" name="txt"  disabled value="" id="ccdd">
+                    <input type="hidden" name="txt"  disabled value="" id="equipo">
+                    <select name="select" class="seleclas" id="nomencu"></select>
+                    <select name="select" class="seleclas" id="nomconglo"></select>
+                    <select name="select" class="seleclas" id="nomvivi"></select>
+                    <select name="select" class="seleclas" id="nomhog">
+                        <option value="01" class="recohog">Hogar - 01</option>
+                        <option value="02" class="recohog">Hogar - 02</option>
+                        <option value="03" class="recohog">Hogar - 03</option>
+                        <option value="04" class="recohog">Hogar - 04</option>
+                        <option value="05" class="recohog">Hogar - 05</option>
+                    </select>
+					<button id="btningresar">Ingresar</button>
+				</form>
+			</div>
+
+			<div class="login">
+				<form id="upload">
+					<label for="chk" aria-hidden="true">Archivo</label>
+                    <input type="file"  id="file" >
+					<!-- <button id="exportarjson">Cargar</button> -->
+				</form>
+
+                <input type="file"  id="inputImport" >
+			</div>
+	</div>
+
+
+    <script src="recursos/js/filesaver.js"></script>
+    <script src="recursos/js/jszip.js"></script>
+    <script src="recursos/js/xml.js"></script>
+    <script type="module">
+
+      let json2,form=document.querySelector("#upload"),file=document.querySelector("#file"),valoresClav="";var request=indexedDB.open("miBaseDeDatos2",1);function agregarDatosv2(e,t,o,n,r,c,a,s,i,l,u){indexedDB.open("miBaseDeDatos2",1).onsuccess=function(e){var d=e.target.result.transaction(["usuariosbd"],"readwrite").objectStore("usuariosbd"),g="",m="";d.getAll().onsuccess=function(e){g=e.target.result,console.log("fuegooo",g),m={id:g[0]?.id?g[0].id:1,ccdd:t,equipo:o,codsup:n,nomsup:r,codencu:c,cargoencu:a,nomencu:s,codconglo:i,codvivi:l,codhog:u},g.forEach((e=>{console.log("dd"),e.codconglo==i&&e.codencu==c&&e.codsup==n&&e.codvivi==l&&e.codhog==u?(console.log("es el mismo registro continuaiiiiiiiiii"),console.log("siguiente pagina al ser el mismo registro...."),setTimeout((()=>{window.location.href="html/index5.html"}),2500)):(console.log("expoprtarrrrriiiiiiiii"),obtenerDatosFinal(!0))})),console.log("los datosss",g);var S=d.add(m);S.onsuccess=function(e){console.log("Datos agregados correctamente"),console.log("siguiente pagina desde el un success......"),setTimeout((()=>{window.location.href="html/index5.html"}),2500)},S.onerror=function(e){console.log("Error al agregar los datos")}}}}function agregarDatosImportadoJson(e,t){indexedDB.open("miBaseDeDatos2",1).onsuccess=function(o){var n=o.target.result.transaction([t],"readwrite").objectStore(t);n.getAll().onsuccess=function(o){var r=o.target.result;console.log("los datosss",r);let c="";if(e.length>1)e.forEach((e=>{c=n.add(e)}));else{let o=e[0];console.log("hhhhhhhhhhhhhh",o,e,t),c=n.add(o)}c.onsuccess=function(e){console.log("Datos agregados correctamente")},c.onerror=function(e){console.log("Error al agregar los datos")}}}}function agregarDatosPrincipal(e,t,o,n){indexedDB.open("miBaseDeDatos2",1).onsuccess=function(r){var c=r.target.result.transaction(["usuariosfinalbd"],"readwrite").objectStore("usuariosfinalbd"),a="",s="";c.getAll().onsuccess=function(r){a=r.target.result,console.log("ddd",e,o),s={id:1,usu:e,conglo:t,vivi:o,segmen:n},console.log("los datosss usufinal",a);var i=c.add(s);i.onsuccess=function(e){console.log("Datos agregados correctamente")},i.onerror=function(e){console.log("Error al agregar los datos")}}}}function obtenerDatosFinal(e){var t=indexedDB.open("miBaseDeDatos2",1);t.onerror=function(e){console.log("Error al abrir la base de datos")},t.onsuccess=function(t){var o=t.target.result,n=Array.from(o.objectStoreNames),r=o.transaction(n,"readonly"),c={},a=n.length,s=0;n.forEach((function(t){var o=r.objectStore(t).getAll();o.onsuccess=function(o){if(c[t]=o.target.result,++s===a){console.log("datos a exportar",c);let t=`${c.usuariosbd[0].codsup}_${c.usuariosbd[0].codconglo}_${c.usuariosbd[0].codvivi}_${c.usuariosbd[0].codhog}_${c.usuariosbd[0].codencu}`;if(console.error("nomarchi",t,c),delete c.usuariosfinalbd,exportCombinedCollections(c,t),eliminaDatos(),e){let e=document.querySelector("#nomsup").getAttribute("data-dni"),t=document.querySelector("#nomsup").value,o=document.querySelector("#ccdd").value,n=document.querySelector("#equipo").value,r=document.querySelector("#nomencu"),c=r.options[r.selectedIndex].value,a=r.options[r.selectedIndex].dataset.nombre,s=r.options[r.selectedIndex].dataset.usu,i=document.querySelector("#nomconglo"),l=i.options[i.selectedIndex].value,u=document.querySelector("#nomvivi"),d=u.options[u.selectedIndex].value,g=document.querySelector("#nomhog"),m=g.options[g.selectedIndex].value;console.log("iiii",l,d,m),agregarDatosv2(1,o,n,e,t,c,s,a,l,d,m),console.log("ingreso true")}}},o.onerror=function(e){console.log("Error al obtener los datos del object store: "+t)}}))}}function ImportarDatosFinalLocal(e){var t=indexedDB.open("miBaseDeDatos2",1);t.onerror=function(e){console.log("Error al abrir la base de datos")},t.onsuccess=function(e){var t=e.target.result,o=Array.from(t.objectStoreNames),n=t.transaction(o,"readonly"),r={},c=o.length,a=0;o.forEach((function(e){var t=n.objectStore(e).getAll();t.onsuccess=function(t){r[e]=t.target.result,++a===c&&console.log("datos a importar localmente",r)},t.onerror=function(t){console.log("Error al obtener los datos del object store: "+e)}}))}}function eliminaDatos(){indexedDB.open("miBaseDeDatos2",1).onsuccess=function(e){var t=e.target.result,o=t.transaction(t.objectStoreNames,"readwrite");Array.from(o.objectStoreNames).forEach((function(e){var t=o.objectStore(e);console.log("yuuu",t.name),"usuariosfinalbd"!=t.name&&t.clear()})),o.oncomplete=function(e){console.log("Registros eliminados con éxito en todos los almacenes"),t.close()}}}function obtenerDatos(){indexedDB.open("miBaseDeDatos2",1).onsuccess=function(e){var t,o=e.target.result;(t=o.transaction(["usuariosfinalbd"],"readonly").objectStore("usuariosfinalbd").getAll()).onsuccess=function(e){var t=e.target.result;console.log("Datos obtenidos.. final..:",t),document.querySelector("#ccdd").value=t[0].segmen[0].CCDD._text,document.querySelector("#equipo").value=t[0].segmen[0].EQUIPO._text;let o=document.querySelector("#nomencu");t[0].usu.forEach((e=>{21==e.CARGO_ID._text?o.insertAdjacentHTML("afterbegin",`<option class="recousu" data-usu="${e.CARGO_ID._text}" data-nombre="${e.NOMBRES._text} ${e.APELLIDOS._text}" value="${e.USUARIO._text}">${e.NOMBRES._text} ${e.APELLIDOS._text} - ENC.</option>`):22==e.CARGO_ID._text&&(document.querySelector("#nomsup").value=`${e.NOMBRES._text} ${e.APELLIDOS._text}`,document.querySelector("#nomsup").setAttribute("data-dni",e.USUARIO._text),document.querySelector("#logoimg").setAttribute("src",`https://iinei.inei.gob.pe/iinei/asistencia/fotos/${e.USUARIO._text}.jpg`)),25==e.CARGO_ID._text&&o.insertAdjacentHTML("afterbegin",`<option class="recousu antro" data-usu="${e.CARGO_ID._text}" data-nombre="${e.NOMBRES._text} ${e.APELLIDOS._text}" value="${e.USUARIO._text}">${e.NOMBRES._text} ${e.APELLIDOS._text} - ANTRO.</option>`)}));let n=document.querySelector("#nomconglo");t[0].conglo.forEach((e=>{n.insertAdjacentHTML("afterbegin",`<option class="recoconglo" value="${e}">${e}</option>`)}));let r=document.querySelector("#nomvivi");t[0].vivi.forEach((e=>{r.insertAdjacentHTML("afterbegin",`<option class="recovivi" data-filtro=${e.conglo} value="${e.vivi}">${e.vivi}</option>`)}))},t.onerror=function(e){console.log("Error al obtener los datos")},(t=o.transaction(["usuariosbd"],"readonly").objectStore("usuariosbd").getAll()).onsuccess=function(e){var t=e.target.result;console.log("Datos obtenidos....:",t),valoresClav=t,t.length>0&&(console.log("tiene un reg"),document.querySelectorAll(".recousu").forEach((e=>{e.value==t[0].codencu&&e.setAttribute("selected",!0)})),document.querySelectorAll(".recoconglo").forEach((e=>{e.value==t[0].codconglo&&e.setAttribute("selected",!0)})),document.querySelectorAll(".recovivi").forEach((e=>{e.value==t[0].codvivi&&e.setAttribute("selected",!0),e.getAttribute("data-filtro")==t[0].codconglo&&e.setAttribute("style","display:block"),e.getAttribute("data-filtro")!=t[0].codconglo&&e.setAttribute("style","display:none")})),document.querySelectorAll(".recohog").forEach((e=>{e.value==t[0].codhog&&e.setAttribute("selected",!0)})))},t.onerror=function(e){console.log("Error al obtener los datos")}}}function handleSubmit(e){if(e.preventDefault(),!file.value.length)return;let t=file.files[0].name;console.log(t);let o=new FileReader;o.onload=function(e){JSZip.loadAsync(e.target.result).then((function(e){e.file(`${t.substring(0,t.indexOf("."))}.xml`).async("string").then((function(e){const t=xml2json(e,{spaces:2,compact:!0});json2=JSON.parse(t).ENDES,console.log("js2",json2);let o=[],n=[],r=[],c=[];if(json2.Usuario.T_USUARIO.forEach((e=>{if(Array.isArray(json2.Segmentacion.T_SEGMENTACION)){if(console.log("es arrr"),e.EQUIPO._text==json2.Segmentacion.T_SEGMENTACION[0].EQUIPO._text&&(21==e.CARGO_ID._text||22==e.CARGO_ID._text||25==e.CARGO_ID._text)){if(o.push(e),22==e.CARGO_ID._text&&(document.querySelector("#nomsup").value=`${e.NOMBRES._text} ${e.APELLIDOS._text}`,document.querySelector("#nomsup").setAttribute("data-dni",e.USUARIO._text)),22==e.CARGO_ID._text&&document.querySelector("#logoimg").setAttribute("src",`https://iinei.inei.gob.pe/iinei/asistencia/fotos/${e.USUARIO._text}.jpg`),21==e.CARGO_ID._text){console.log("hola",e),document.querySelector("#nomencu").insertAdjacentHTML("afterbegin",`<option data-usu="${e.CARGO_ID._text}" data-nombre="${e.NOMBRES._text} ${e.APELLIDOS._text}" value="${e.USUARIO._text}">${e.NOMBRES._text} ${e.APELLIDOS._text} - ENC.</option>`)}if(25==e.CARGO_ID._text){console.log("holad",e),document.querySelector("#nomencu").insertAdjacentHTML("afterbegin",`<option class="antro" data-usu="${e.CARGO_ID._text}" data-nombre="${e.NOMBRES._text} ${e.APELLIDOS._text}" value="${e.USUARIO._text}">${e.NOMBRES._text} ${e.APELLIDOS._text} - ANTRO.</option>`)}}}else if(e.EQUIPO._text==json2.Segmentacion.T_SEGMENTACION.EQUIPO._text&&(21==e.CARGO_ID._text||22==e.CARGO_ID._text||25==e.CARGO_ID._text)){if(o.push(e),22==e.CARGO_ID._text&&(document.querySelector("#nomsup").value=`${e.NOMBRES._text} ${e.APELLIDOS._text}`,document.querySelector("#nomsup").setAttribute("data-dni",e.USUARIO._text)),22==e.CARGO_ID._text&&document.querySelector("#logoimg").setAttribute("src",`https://iinei.inei.gob.pe/iinei/asistencia/fotos/${e.USUARIO._text}.jpg`),21==e.CARGO_ID._text){console.log("hola",e),document.querySelector("#nomencu").insertAdjacentHTML("afterbegin",`<option data-usu="${e.CARGO_ID._text}" data-nombre="${e.NOMBRES._text} ${e.APELLIDOS._text}" value="${e.USUARIO._text}">${e.NOMBRES._text} ${e.APELLIDOS._text} - ENC.</option>`)}if(25==e.CARGO_ID._text){console.log("hola",e),document.querySelector("#nomencu").insertAdjacentHTML("afterbegin",`<option class="antro" data-usu="${e.CARGO_ID._text}" data-nombre="${e.NOMBRES._text} ${e.APELLIDOS._text}" value="${e.USUARIO._text}">${e.NOMBRES._text} ${e.APELLIDOS._text} - ANTRO.</option>`)}}})),Array.isArray(json2.Segmentacion.T_SEGMENTACION)){let e=document.querySelector("#nomconglo");json2.Segmentacion.T_SEGMENTACION.forEach((t=>{n.push(t.CONGLOMERADO._text),e.insertAdjacentHTML("afterbegin",`<option value="${t.CONGLOMERADO._text}">${t.CONGLOMERADO._text}</option>`)}));let t=document.querySelector("#nomvivi");json2.Marco.T_MARCO.forEach((e=>{r.push({vivi:e.NSELV._text,id:e.ID._text,conglo:e.CONGLOMERADO._text}),t.insertAdjacentHTML("afterbegin",`<option class="recovivi" data-filtro=${e.CONGLOMERADO._text} value="${e.NSELV._text}">${e.NSELV._text}</option>`)})),c.push(json2.Segmentacion.T_SEGMENTACION[0]),document.querySelector("#ccdd").setAttribute("value",json2.Segmentacion.T_SEGMENTACION[0].CCDD._text),document.querySelector("#equipo").setAttribute("value",json2.Segmentacion.T_SEGMENTACION[0].EQUIPO._text)}else{let e=document.querySelector("#nomconglo");n.push(json2.Segmentacion.T_SEGMENTACION.CONGLOMERADO._text),e.insertAdjacentHTML("afterbegin",`<option value="${json2.Segmentacion.T_SEGMENTACION.CONGLOMERADO._text}">${json2.Segmentacion.T_SEGMENTACION.CONGLOMERADO._text}</option>`);let t=document.querySelector("#nomvivi");json2.Marco.T_MARCO.forEach((e=>{r.push({vivi:e.NSELV._text,id:e.ID._text,conglo:e.CONGLOMERADO._text}),t.insertAdjacentHTML("afterbegin",`<option class="recovivi" data-filtro=${e.CONGLOMERADO._text} value="${e.NSELV._text}">${e.NSELV._text}</option>`)})),c.push(json2.Segmentacion.T_SEGMENTACION),document.querySelector("#ccdd").setAttribute("value",json2.Segmentacion.T_SEGMENTACION.CCDD._text),document.querySelector("#equipo").setAttribute("value",json2.Segmentacion.T_SEGMENTACION.EQUIPO._text)}setTimeout((()=>{agregarDatosPrincipal(o,n,r,c)}),1500)}))})).catch((function(e){console.error("Failed to open",file," as ZIP file:",e)}))},o.onerror=function(e){console.error("Failed to read file",e)},o.readAsArrayBuffer(file.files[0])}async function fetchData(e,t,o,n,r){try{const c=await fetch(`https://aplications.inei.gob.pe/WebEndesEncuesta/public/api/example?codsup=${e}&codencu=${t}&codconglo=${o}&codvivi=${n}&codhog=${r}`);if(!c.ok)throw new Error("Error al obtener los datos");const a=await c.json();return console.log(a),a}catch(e){return console.error(e),"nc"}}async function postData(e,t){try{const o=await fetch(e,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(t)});if(!o.ok)throw new Error("Network response was not ok.");return await o.json()}catch(e){return console.error("Error:",e),null}}function exportCombinedCollections(e,t){let o={};Object.entries(e).forEach((([e,t])=>{console.log(e,JSON.stringify(JSON.stringify(t))),o[e]="usuariosbd"==e?t:JSON.stringify(t)})),console.log("arrrr",o),postData("https://aplications.inei.gob.pe/WebEndesEncuesta/public/api/example?",o).then((e=>{e&&(console.log("Respuesta del servidor:",e),setTimeout((()=>{window.location.href="html/index5.html"}),2500),console.log("respuesta del servidor post me voy a la pag siguiente..."))})).catch((e=>{console.error("Error:",e)})),console.log("jsondata",e);const n=JSON.stringify(e),r=document.createElement("a");r.href="data:text/json;charset=utf-8,"+encodeURIComponent(n),r.download=`${t}.json`,r.click()}function onChange(e){var t=new FileReader;t.onload=onReaderLoad,t.readAsText(e.target.files[0])}function onReaderLoad(e){var t=JSON.parse(e.target.result);console.log(t);let o=confirm(`Desea retomar con la evaluacion de\n la Srta: ${t.usuariosbd[0].nomencu} \nconglomerado: ${t.usuariosbd[0].codconglo} \nVivienda: ${t.usuariosbd[0].codvivi} \nVivienda: ${t.usuariosbd[0].codhog}`);console.log(o),o&&(console.log("devvvv"),obtenerDatosFinal(!1),setTimeout((()=>{Object.entries(t).forEach((([e,t])=>{console.log(e,t),agregarDatosImportadoJson(t,e)})),agregarDatosImportadoJson(t.usuariosbd)}),2e3),setTimeout((()=>{window.location.href="html/index5.html",console.log("despues de 3 segundos , si encuentra valor y lo enserta localmente...")}),2500))}request.onsuccess=function(e){e.target.result;console.log("Base de datos abierta correctamente")},request.onerror=function(e){console.log("Error al abrir la base de datos")},request.onupgradeneeded=function(e){var t=e.target.result;t.createObjectStore("usuariosbd",{keyPath:"id"}),t.createObjectStore("usuariosfinalbd",{keyPath:"id"}),t.createObjectStore("chcaracmihog",{keyPath:"id"}),t.createObjectStore("chcaracvivi",{keyPath:"id"}),t.createObjectStore("chmortalidad",{keyPath:"id"}),t.createObjectStore("chprosocia",{keyPath:"id"}),t.createObjectStore("cianteced",{keyPath:"id"}),t.createObjectStore("cireproduc",{keyPath:"id"}),t.createObjectStore("cihistoria",{keyPath:"id"}),t.createObjectStore("ci226240",{keyPath:"id"}),t.createObjectStore("cianticoncep",{keyPath:"id"}),t.createObjectStore("ciseccion4a",{keyPath:"id"}),t.createObjectStore("ciinmunizaci",{keyPath:"id"}),t.createObjectStore("citramo1",{keyPath:"id"}),t.createObjectStore("citramo2",{keyPath:"id"}),t.createObjectStore("citramo3",{keyPath:"id"}),t.createObjectStore("citramo4",{keyPath:"id"}),t.createObjectStore("citramo5",{keyPath:"id"}),t.createObjectStore("citramo6",{keyPath:"id"}),t.createObjectStore("citramo6a",{keyPath:"id"}),t.createObjectStore("ci479496",{keyPath:"id"}),t.createObjectStore("cinupciali",{keyPath:"id"}),t.createObjectStore("ciprefecund",{keyPath:"id"}),t.createObjectStore("citrabajo",{keyPath:"id"}),t.createObjectStore("cisida",{keyPath:"id"}),t.createObjectStore("cimormater",{keyPath:"id"}),t.createObjectStore("civiolen",{keyPath:"id"}),t.createObjectStore("cicarne",{keyPath:"id"}),t.createObjectStore("csanteced",{keyPath:"id"}),t.createObjectStore("cshiperdi",{keyPath:"id"}),t.createObjectStore("csfactore",{keyPath:"id"}),t.createObjectStore("csocularbu",{keyPath:"id"}),t.createObjectStore("cscancer",{keyPath:"id"}),t.createObjectStore("cstbcds",{keyPath:"id"}),t.createObjectStore("csvihsida",{keyPath:"id"}),t.createObjectStore("csmental",{keyPath:"id"}),t.createObjectStore("csninos",{keyPath:"id"}),t.createObjectStore("csmedici",{keyPath:"id"}),t.createObjectStore("csmedipres",{keyPath:"id"}),t.createObjectStore("chantrohemo",{keyPath:"id"}),t.createObjectStore("chyodoclo",{keyPath:"id"}),t.createObjectStore("antromediantro",{keyPath:"id"}),t.createObjectStore("antrohemoglo",{keyPath:"id"}),t.createObjectStore("antromanequip",{keyPath:"id"}),t.createObjectStore("antrodiagnos",{keyPath:"id"});console.log("Base de datos actualizada")},obtenerDatos(),form.addEventListener("change",handleSubmit),document.querySelector("#btningresar").addEventListener("click",(async e=>{e.preventDefault();let t=document.querySelector("#nomsup").getAttribute("data-dni"),o=document.querySelector("#nomsup").value,n=document.querySelector("#ccdd").value,r=document.querySelector("#equipo").value,c=document.querySelector("#nomencu"),a=c.options[c.selectedIndex].value,s=c.options[c.selectedIndex].dataset.nombre,i=c.options[c.selectedIndex].dataset.usu,l=document.querySelector("#nomconglo"),u=l.options[l.selectedIndex].value,d=document.querySelector("#nomvivi"),g=d.options[d.selectedIndex].value,m=document.querySelector("#nomhog"),S=m.options[m.selectedIndex].value;console.log("iiii",u,g,S);let O=await fetchData(t,a,u,g,S);if(0==O.length)console.log("no existe en la bd servidor",O),agregarDatosv2(1,n,r,t,o,a,i,s,u,g,S);else if("nc"==O)console.log(O),agregarDatosv2(1,n,r,t,o,a,i,s,u,g,S);else{console.log("si encuentra el valor",O,JSON.parse(JSON.parse(O[0].chcaracmihog))),obtenerDatosFinal(!1);let e=[{usuariosbd:[{id:O[0].id,ccdd:O[0].ccdd,equipo:O[0].equipo,codsup:O[0].codsup,nomsup:O[0].nomsup,codencu:O[0].codencu,nomencu:O[0].nomencu,cargoencu:O[0].cargoencu,codconglo:O[0].codconglo,codvivi:O[0].codvivi,codhog:O[0].codhog}]}];Object.entries(O[0]).forEach((([t,o])=>{"codconglo"!=t&&"codencu"!=t&&"codhog"!=t&&"codsup"!=t&&"codvivi"!=t&&"ccdd"!=t&&"equipo"!=t&&"estado"!=t&&"fecha"!=t&&"id"!=t&&"nomencu"!=t&&"nomsup"!=t&&e.push({[t]:JSON.parse(JSON.parse(o))})})),console.log("gao",e),setTimeout((()=>{e.forEach((e=>{agregarDatosImportadoJson(Object.values(e)[0],Object.keys(e)[0])}))}),2e3),setTimeout((()=>{window.location.href="html/index5.html",console.log("despues de 3 segundos , si encuentra valor y lo enserta localmente...")}),3e3)}console.log(e.target)})),document.querySelector("#nomconglo").addEventListener("change",(e=>{document.querySelectorAll(".recovivi").forEach((t=>{t.getAttribute("data-filtro")==e.target.value&&t.setAttribute("style","display:block"),t.getAttribute("data-filtro")!=e.target.value&&t.setAttribute("style","display:none")}))})),document.getElementById("inputImport").addEventListener("change",onChange);
+    </script>
+
+    <script src="index.js"></script>
+</body>
+</html>
