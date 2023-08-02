@@ -340,7 +340,165 @@
     <script src="../recursos/js/bootstrap.min.js" ></script>
     <script>
 
-function obtenerDatosLogin(){indexedDB.open("miBaseDeDatos2",1).onsuccess=function(o){var t=o.target.result.transaction(["usuariosbd"],"readonly").objectStore("usuariosbd").getAll();t.onsuccess=function(o){var t=o.target.result;console.log("Datos obtenidos.usu...:",t),document.querySelector("#nomencu").textContent=t[0].nomencu,document.querySelector("#nomeconglo").textContent=t[0].codconglo,document.querySelector("#nomevivi").textContent=t[0].codvivi,document.querySelector("#nomehog").textContent=t[0].codhog},t.onerror=function(o){console.log("Error al obtener los datos")}}}function obtenerDatosFinal(){var o=indexedDB.open("miBaseDeDatos2",1);o.onerror=function(o){console.log("Error al abrir la base de datos")},o.onsuccess=function(o){var t=o.target.result,e=Array.from(t.objectStoreNames),n=t.transaction(e,"readonly"),r={},s=e.length,c=0;e.forEach((function(o){var t=n.objectStore(o).getAll();t.onsuccess=function(t){if(r[o]=t.target.result,++c===s){console.log("datos getttt",r);let o=document.querySelector("#cajaconteos");Object.entries(r).forEach((([t,e])=>{let n=[];e.forEach((o=>{0==o.consistenciai&&0==o.errorc&&0==o.fraseo&&0==o.inducer&&0==o.nrcons&&0==o.omit&&0==o.registroi&&0==o.sondeoi||n.push(o)}));let r=creaTabla(t,n);"usuariosbd"!=t&&"usuariosfinalbd"!=t&&"csmedipres"!=t&&"chantrohemo"!=t&&"chyodoclo"!=t&&"antromediantro"!=t&&"antrohemoglo"!=t&&"antromanequip"!=t&&"antrodiagnos"!=t&&n.length>0&&o.insertAdjacentHTML("beforeend",r)}))}},t.onerror=function(t){console.log("Error al obtener los datos del object store: "+o)}}))}}function creaTabla(o,t){return html=`<div class="table-responsive">\n            <table class="table align-middle">\n                <thead >\n                <tr style="color: white; background: ${"ch"==o.substring(0,2)?"#DFBF2E":"ci"==o.substring(0,2)?"#C03731":"cs"==o.substring(0,2)?"#57892D":"#DFBF2E"};">\n                    <th colspan="10">Cuestionario ${"ch"==o.substring(0,2)?"Hogar":"ci"==o.substring(0,2)?"Individual":"cs"==o.substring(0,2)?"Salud":"Hogar"} - ${o}</th>\n                </tr>\n                <tr class="table-dark">\n                    <th scope="col">Preguntas</th>\n                    <th scope="col">Omi. F.</th>\n                    <th scope="col">Fra. I.</th>\n                    <th scope="col">Reg. I.</th>\n                    <th scope="col">Omi. F.</th>\n                    <th scope="col">Fra. I.</th>\n                    <th scope="col">Reg. I.</th>\n                    <th scope="col">Fra. I.</th>\n                    <th scope="col">Reg. I.</th>\n                    <th scope="col">Observación</th>\n                </tr>\n                </thead>\n                <tbody>\n                    ${t.map((o=>`<tr>\n                                        <td>${o.id}</td>\n                                        <td>${0==o.omit?"No":"<b style=color:red;>Si</b>"}</td>\n                                        <td>${0==o.fraseo?"No":"<b style=color:red;>Si</b>"}</td>\n                                        <td>${0==o.registroi?"No":"<b style=color:red;>Si</b>"}</td>\n                                        <td>${0==o.errorc?"No":"<b style=color:red;>Si</b>"}</td>\n                                        <td>${0==o.sondeoi?"No":"<b style=color:red;>Si</b>"}</td>\n                                        <td>${0==o.inducer?"No":"<b style=color:red;>Si</b>"}</td>\n                                        <td>${0==o.nrcons?"No":"<b style=color:red;>Si</b>"}</td>\n                                        <td>${0==o.consistenciai?"No":"<b style=color:red;>Si</b>"}</td>\n                                        <td>${o.obs}</td>\n                                      </tr>`)).join("")}\n                </tbody>\n            </table>\n        </div>`}obtenerDatosLogin(),obtenerDatosFinal();
+
+
+        // Obtener datos 
+        function obtenerDatosLogin() {
+            // Abrir la base de datos
+            var request = indexedDB.open("miBaseDeDatos2", 1);
+
+            request.onsuccess = function(event) {
+                var db = event.target.result;
+
+                // Iniciar una transacción de lectura
+                var transaction = db.transaction(["usuariosbd"], "readonly");
+
+                // Obtener el almacén de objetos
+                var objectStore = transaction.objectStore("usuariosbd");
+
+                // Obtener todos los objetos del almacén
+                var requestGetAll = objectStore.getAll();
+
+
+                requestGetAll.onsuccess = function(event) {
+                    var data = event.target.result;
+                    console.log("Datos obtenidos.usu...:", data);
+
+                    document.querySelector("#nomencu").textContent = data[0].nomencu
+                    document.querySelector("#nomeconglo").textContent = data[0].codconglo
+                    document.querySelector("#nomevivi").textContent = data[0].codvivi
+                    document.querySelector("#nomehog").textContent = data[0].codhog
+                    
+                };
+
+                requestGetAll.onerror = function(event) {
+                console.log("Error al obtener los datos");
+                };
+            };
+        }
+
+        obtenerDatosLogin()
+
+
+
+        function obtenerDatosFinal() {
+            var request = indexedDB.open('miBaseDeDatos2', 1);
+
+            request.onerror = function(event) {
+            console.log('Error al abrir la base de datos');
+            };
+
+            request.onsuccess = function(event) {
+            var db = event.target.result;
+
+            var objectStoreNames = Array.from(db.objectStoreNames);
+
+            var transaction = db.transaction(objectStoreNames, 'readonly');
+
+            var allData = {};
+
+            var objectStoreCount = objectStoreNames.length;
+            var completedCount = 0;
+
+            objectStoreNames.forEach(function(objectStoreName) {
+                var objectStore = transaction.objectStore(objectStoreName);
+                var request = objectStore.getAll();
+
+                request.onsuccess = function(event) {
+                    allData[objectStoreName] = event.target.result;
+                    completedCount++;
+
+                    if (completedCount === objectStoreCount) {
+                        console.log("datos getttt",allData);
+                        
+                        let cajaconteos = document.querySelector("#cajaconteos")
+
+                        Object.entries(allData).forEach(([key, value]) => {
+                            
+                            let soloObs = []
+
+                            value.forEach(ele => {
+                                if(ele.consistenciai == 0 && 
+                                    ele.asumresp == 0 &&
+                                    ele.errorc == 0 &&
+                                    ele.fraseo == 0 &&
+                                    ele.inducer == 0 &&
+                                    ele.nrcons == 0 &&
+                                    ele.omit == 0 &&
+                                    ele.registroi == 0 &&
+                                    ele.sondeoi == 0){
+                                        
+                                }else{
+                                    soloObs.push(ele)
+                                }
+                                
+                            });
+
+                            //console.log(key,soloObs)
+                            let red = creaTabla(key, soloObs)
+                            if(key != "usuariosbd" && key != "usuariosfinalbd" && key != "csmedipres" && key != "chantrohemo" 
+                            && key != "chyodoclo" && key != "antromediantro" && key != "antrohemoglo" && key != "antromanequip" && key != "antrodiagnos" 
+                            && soloObs.length>0){
+                                cajaconteos.insertAdjacentHTML("beforeend", red)
+                                //console.log(red)
+                            }
+                            
+
+                        });
+
+                    }
+                };
+
+                request.onerror = function(event) {
+                    console.log('Error al obtener los datos del object store: ' + objectStoreName);
+                };
+            });
+            };
+
+        }
+
+
+        function creaTabla(nomcuestio, array){
+           return  html = `<div class="table-responsive">
+            <table class="table align-middle">
+                <thead >
+                <tr style="color: white; background: ${nomcuestio.substring(0, 2)=="ch"?"#DFBF2E":nomcuestio.substring(0, 2)=="ci"?"#C03731":nomcuestio.substring(0, 2)=="cs"?"#57892D":"#DFBF2E"};">
+                    <th colspan="10">Cuestionario ${nomcuestio.substring(0, 2)=="ch"?"Hogar":nomcuestio.substring(0, 2)=="ci"?"Individual":nomcuestio.substring(0, 2)=="cs"?"Salud":"Hogar"} - ${nomcuestio}</th>
+                </tr>
+                <tr class="table-dark">
+                    <th scope="col">Preguntas</th>
+                    <th scope="col">Omi. F.</th>
+                    <th scope="col">Fra. I.</th>
+                    <th scope="col">Reg. I.</th>
+                    <th scope="col">Omi. F.</th>
+                    <th scope="col">Fra. I.</th>
+                    <th scope="col">Reg. I.</th>
+                    <th scope="col">Fra. I.</th>
+                    <th scope="col">Reg. I.</th>
+                    <th scope="col">Observación</th>
+                </tr>
+                </thead>
+                <tbody>
+                    ${array.map(el=> `<tr>
+                                        <td>${el.id}</td>
+                                        <td>${el.omit == 0 ? "No" :"<b style=color:red;>Si</b>"}</td>
+                                        <td>${el.fraseo == 0 ? "No" :"<b style=color:red;>Si</b>"}</td>
+                                        <td>${el.registroi == 0 ? "No" :"<b style=color:red;>Si</b>"}</td>
+                                        <td>${el.errorc == 0 ? "No" :"<b style=color:red;>Si</b>"}</td>
+                                        <td>${el.sondeoi == 0 ? "No" :"<b style=color:red;>Si</b>"}</td>
+                                        <td>${el.inducer == 0 ? "No" :"<b style=color:red;>Si</b>"}</td>
+                                        <td>${el.nrcons == 0 ? "No" :"<b style=color:red;>Si</b>"}</td>
+                                        <td>${el.consistenciai == 0 ? "No" :"<b style=color:red;>Si</b>"}</td>
+                                        <td>${el.asumresp == 0 ? "No" :"<b style=color:red;>Si</b>"}</td>
+                                        <td>${el.obs}</td>
+                                      </tr>`).join('')}
+                </tbody>
+            </table>
+        </div>`
+        }
+
+
+        obtenerDatosFinal()
 
     </script>
 </body>
