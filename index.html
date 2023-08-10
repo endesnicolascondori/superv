@@ -1079,6 +1079,29 @@
         // Función para exportar las colecciones combinadas en formato JSON
         function exportCombinedCollections(jsondata, nomarchi) {
         
+            // Obtener la fecha y hora actual
+            var fechaActual = new Date();
+
+            // Obtener los componentes de la fecha y hora
+            var anio = fechaActual.getFullYear();
+            var mes = agregarCeros(fechaActual.getMonth() + 1);
+            var dia = agregarCeros(fechaActual.getDate());
+            var horas = agregarCeros(fechaActual.getHours());
+            var minutos = agregarCeros(fechaActual.getMinutes());
+            var segundos = agregarCeros(fechaActual.getSeconds());
+
+            // Crear la cadena en el formato deseado (YYYY-MM-DD HH:MM:SS)
+            var cadenaFechaHora = anio+'-'+mes+'-'+dia+'_'+horas+'_'+minutos+'_'+segundos;
+
+            console.log("fecha unica",cadenaFechaHora);
+
+            // Función para agregar ceros a valores menores que 10
+            function agregarCeros(valor) {
+                if (valor < 10) {
+                    return '0' + valor;
+                }
+                return valor;
+            }
 
             
             // Ejemplo de uso
@@ -1129,7 +1152,7 @@
             // Crear un enlace de descarga
             const a = document.createElement('a');
             a.href = 'data:text/json;charset=utf-8,' + encodeURIComponent(jsonData);
-            a.download =  `${nomarchi}.json`;
+            a.download =  `${nomarchi}_${cadenaFechaHora}.json`;
 
             // Simular un clic en el enlace para iniciar la descarga
             a.click();
