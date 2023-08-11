@@ -264,6 +264,11 @@
     h5#modalTitle {
         font-size: 0.9rem;
     }
+
+    .tuClase{
+        pointer-events: none;
+        opacity: 0.6;
+    }
 </style>
 <body>
 
@@ -308,7 +313,7 @@
                         <td colspan="2" class="align-middle">No Observó</td>
                         <td colspan="1" class="align-middle">
                             <div class="form-check form-switch">
-                                <input class="form-check-input switchclass" type="checkbox" id="flexSwitchCheckDefault" >
+                                <input class="form-check-input switchclass" type="checkbox" id="flexSwitchCheckDefault" data-oculto="check">
                             </div>
                         </td>
                     </tr>
@@ -420,7 +425,7 @@
                         <td colspan="2" class="align-middle">No Observó</td>
                         <td colspan="1" class="align-middle">
                             <div class="form-check form-switch">
-                                <input class="form-check-input switchclass" type="checkbox" id="flexSwitchCheckDefault" >
+                                <input class="form-check-input switchclass" type="checkbox" id="flexSwitchCheckDefault" data-oculto="check">
                             </div>
                         </td>
                     </tr>
@@ -567,7 +572,7 @@
                         <td colspan="2" class="align-middle">No Observó</td>
                         <td colspan="1" class="align-middle">
                             <div class="form-check form-switch">
-                                <input class="form-check-input switchclass" type="checkbox" id="flexSwitchCheckDefault" >
+                                <input class="form-check-input switchclass" type="checkbox" id="flexSwitchCheckDefault" data-oculto="check">
                             </div>
                         </td>
                     </tr>
@@ -728,7 +733,7 @@
                         <td colspan="2" class="align-middle">No Observó</td>
                         <td colspan="1" class="align-middle">
                             <div class="form-check form-switch">
-                                <input class="form-check-input switchclass" type="checkbox" id="flexSwitchCheckDefault" >
+                                <input class="form-check-input switchclass" type="checkbox" id="flexSwitchCheckDefault" data-oculto="check">
                             </div>
                         </td>
                     </tr>
@@ -791,7 +796,7 @@
                         <td colspan="2" class="align-middle">No Observó</td>
                         <td colspan="1" class="align-middle">
                             <div class="form-check form-switch">
-                                <input class="form-check-input switchclass" type="checkbox" id="flexSwitchCheckDefault" >
+                                <input class="form-check-input switchclass" type="checkbox" id="flexSwitchCheckDefault" data-oculto="check">
                             </div>
                         </td>
                     </tr>
@@ -959,7 +964,7 @@
                         <td colspan="2" class="align-middle">No Observó</td>
                         <td colspan="1" class="align-middle">
                             <div class="form-check form-switch">
-                                <input class="form-check-input switchclass" type="checkbox" id="flexSwitchCheckDefault" >
+                                <input class="form-check-input switchclass" type="checkbox" id="flexSwitchCheckDefault" data-oculto="check">
                             </div>
                         </td>
                     </tr>
@@ -1065,7 +1070,7 @@
                         <td colspan="2" class="align-middle">No Observó</td>
                         <td colspan="1" class="align-middle">
                             <div class="form-check form-switch">
-                                <input class="form-check-input switchclass" type="checkbox" id="flexSwitchCheckDefault" >
+                                <input class="form-check-input switchclass" type="checkbox" id="flexSwitchCheckDefault" data-oculto="check">
                             </div>
                         </td>
                     </tr>
@@ -1465,6 +1470,28 @@
                 //document.querySelector("#guardaredit").setAttribute("estado",e.target.checked)
                 agregarDatosv2(preg, valor)
                 editarEstado(preg,e.target.checked, valor)
+
+
+                if(e.target.getAttribute("data-oculto")== "check" && e.target.checked == true){
+                    console.log("es un check para deshabilitar")
+                    console.log("check",e.target.checked)
+                    console.log(e.target.closest("tr").parentElement)
+
+                    var tbody = e.target.closest("tr").parentElement;
+                    var filas = tbody.getElementsByTagName("tr");
+                    for (var i = 1; i < filas.length; i++) {
+                    filas[i].classList.add("tuClase");
+                    }
+
+                }else{
+                    console.log("es un check para habilitar")
+
+                    var tbody = e.target.closest("tr").parentElement;
+                    var filas = tbody.getElementsByTagName("tr");
+                    for (var i = 1; i < filas.length; i++) {
+                    filas[i].classList.remove("tuClase");
+                    }
+                }
             }
 
             if(e.target.nodeName == 'svg' || e.target.nodeName == 'path' || e.target.nodeName == 'BUTTON'  ){
@@ -1481,6 +1508,35 @@
 
         })
 
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Tu código aquí
+            var tbody = document.querySelectorAll(".tdobyprev");
+
+            tbody.forEach(el => {
+                
+                var filas = el.getElementsByTagName("tr");
+
+                setTimeout(() => {
+                    console.log("redddd", filas[0].lastElementChild.firstElementChild.firstElementChild.checked)
+
+                    if(filas[0].lastElementChild.firstElementChild.firstElementChild.checked == true){
+                        for (var i = 1; i < filas.length; i++) {
+                            filas[i].classList.add("tuClase");
+                        }
+                    }else{
+
+                    }
+
+                }, 1500);
+
+                
+            });
+
+            //var filas = tbody[0].getElementsByTagName("tr");
+
+            
+        });
 
     </script>
 </body>
