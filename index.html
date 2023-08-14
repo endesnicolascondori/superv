@@ -326,8 +326,7 @@
                             setTimeout(() => {
                                 window.location.href = "html/index5.html";
                             }, 2500);
-                            //window.location.href = "http://127.0.0.1:5500html/index5.html";
-                            //window.location.href = "http://172.17.10.47/listadohtml/index5.html";
+
                         }else{
                             console.log("expoprtarrrrriiiiiiiii")
                             //exportCombinedCollections(data)
@@ -343,10 +342,10 @@
                     requestAdd.onsuccess = function(event) {
                         console.log("Datos agregados correctamente");
                         console.log("siguiente pagina desde el un success......");
+
                         setTimeout(() => {
                             window.location.href = "html/index5.html";
                         }, 2500);
-                        //window.location.href = "http://172.17.10.47/listadohtml/index5.html";
                     };
 
                     requestAdd.onerror = function(event) {
@@ -460,7 +459,6 @@
 
                     requestAdd.onsuccess = function(event) {
                         console.log("Datos agregados correctamente");
-                        //window.location.href = "http://127.0.0.1:5500html/index5.html";
                     };
 
                     requestAdd.onerror = function(event) {
@@ -971,13 +969,23 @@
 
             let peticion = await fetchData(codsuper,codencu, codconglo2, codvivi2,codhog2 );
 
+            console.log("es la peticionnnnnnnnn",peticion)
+            
+
 
             if(peticion.length == 0){
                 console.log("no existe en la bd servidor", peticion)
                 agregarDatosv2(1,ccdd,equipo, codsuper,nomsuper, codencu,cargoencu, nomencu, codconglo2, codvivi2 , codhog2)
             }else if(peticion == "nc"){
+                console.log("no tienes conexion a internet...........")
                 console.log(peticion)
-                agregarDatosv2(1,ccdd,equipo, codsuper,nomsuper, codencu,cargoencu, nomencu, codconglo2, codvivi2 , codhog2)
+                var userConfirmed = confirm("No cuentas con conexión a internet:\n click en 'Cancelar' si desea retomar con una evaluación, que ya existe, busque el archivo en descargas e impórtelo \n Click en 'Aceptar' si es una evaluación nueva.");
+                if (userConfirmed) {
+                    agregarDatosv2(1,ccdd,equipo, codsuper,nomsuper, codencu,cargoencu, nomencu, codconglo2, codvivi2 , codhog2)
+                } else {
+                    // Cancel the deletion
+                }
+                
             }else{
                 console.log("si encuentra el valor", peticion ,JSON.parse(JSON.parse(peticion[0].chcaracmihog)))
 
@@ -1136,7 +1144,8 @@
             .then(responseData => {
                 if (responseData) {
                 console.log('Respuesta del servidor:', responseData);
-                  //window.location.href = "html/index5.html";
+
+                alert(`Se insertó al servidor ${nomarchi}`)
 
                   setTimeout(() => {
                     window.location.href = "html/index5.html";
@@ -1146,8 +1155,8 @@
                 }
             })
             .catch(error => {
-                console.error('Error:', error);
-                 //window.location.href = "http://127.0.0.1:5500html/index5.html";
+                //alert("no se inserto al servidor")
+                console.error('Error:ccc', error);
             });
 
             
@@ -1238,9 +1247,7 @@
 
         }
         
-        // function alert_data(name, family){
-        //     alert('Name : ' + name + ', Family : ' + family);
-        // }
+       
     
         document.getElementById('inputImport').addEventListener('change', onChange);
       
