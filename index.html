@@ -197,6 +197,7 @@
         let json2
 
         let valoresClav = ""
+        let filename3 = ''
 
 
         // Abrir la base de datos (o crearla si no existe)
@@ -424,7 +425,7 @@
         //////////////////CARGAR TABLA PRINCIPAL
 
 
-        function agregarDatosPrincipal(usuarios, conglomerados ,viviendas, segmen) {
+        function agregarDatosPrincipal(usuarios, conglomerados ,viviendas, segmen, marco) {
             // Abrir la base de datos
             var request = indexedDB.open("miBaseDeDatos2", 1);
 
@@ -449,7 +450,7 @@
                     // Crear un objeto para almacenar en el almacén
                     console.log("ddd",usuarios, viviendas)
                     objeto = { id:1, usu: usuarios ,conglo: conglomerados
-                              ,vivi: viviendas, segmen:segmen};
+                              ,vivi: viviendas, segmen:segmen, marco:marco};
 
                 
 
@@ -669,9 +670,15 @@
                         if(el.CARGO_ID._text == 21){
                             list.insertAdjacentHTML('afterbegin', `<option class="recousu" data-usu="${el.CARGO_ID._text}" data-nombre="${el.NOMBRES._text} ${el.APELLIDOS._text}" value="${el.USUARIO._text}">${el.NOMBRES._text} ${el.APELLIDOS._text} - ENC.</option>`);
                         }else if(el.CARGO_ID._text == 22){
-                            document.querySelector("#nomsup").value =  `${el.NOMBRES._text} ${el.APELLIDOS._text}`
-                            document.querySelector("#nomsup").setAttribute("data-dni", el.USUARIO._text)
-                            document.querySelector("#logoimg").setAttribute("src", `https://iinei.inei.gob.pe/iinei/asistencia/fotos/${el.USUARIO._text}.jpg`)
+
+                            console.log("reffffffffffffff", el)
+
+                            if(data[0].marco[0] == el.USUARIO._text){
+                                    
+                                document.querySelector("#nomsup").value =  `${el.NOMBRES._text} ${el.APELLIDOS._text}`
+                                document.querySelector("#nomsup").setAttribute("data-dni", el.USUARIO._text)
+                                document.querySelector("#logoimg").setAttribute("src", `https://iinei.inei.gob.pe/iinei/asistencia/fotos/${el.USUARIO._text}.jpg`)
+                            }
                         }
 
                         if(el.CARGO_ID._text == 25){
@@ -790,7 +797,7 @@
             // If there's no file, do nothing
             if (!file.value.length) return;
 
-            let filename3 = file.files[0].name;
+            filename3 = file.files[0].name;
             console.log(filename3)
 
             // Create a new FileReader() object
@@ -814,6 +821,7 @@
                         let arrConglo = []
                         let arrVivi = []
                         let segmen = []
+                        let marco = []
 
                         json2.Usuario.T_USUARIO.forEach(el => {
                             if(Array.isArray(json2.Segmentacion.T_SEGMENTACION)){
@@ -821,10 +829,36 @@
                                 if(el.EQUIPO._text == json2.Segmentacion.T_SEGMENTACION[0].EQUIPO._text && (el.CARGO_ID._text == 21 || el.CARGO_ID._text == 22 || el.CARGO_ID._text == 25) ){
                                     arrUsu.push(el)
                                     if(el.CARGO_ID._text== 22){
-                                        document.querySelector("#nomsup").value =  `${el.NOMBRES._text} ${el.APELLIDOS._text}`
-                                        document.querySelector("#nomsup").setAttribute("data-dni", el.USUARIO._text)
+                                        console.log("LISTADO DE USUARIOS",el.USUARIO._text, filename3)
+
+                                       
+
+                                        const inputString = filename3
+                                        const regex = /_(.*?)_/;  
+
+                                        const matches = inputString.match(regex);
+                                        if (matches && matches.length >= 2) {
+                                            const result = matches[1];  
+                                            console.log("Si se encontró",result);  
+
+                                            if(el.USUARIO._text == result ){
+
+                                                marco.push(result)
+
+                                                document.querySelector("#nomsup").value =  `${el.NOMBRES._text} ${el.APELLIDOS._text}`
+                                                document.querySelector("#nomsup").setAttribute("data-dni", el.USUARIO._text)
+
+                                                el.CARGO_ID._text== 22 ? document.querySelector("#logoimg").setAttribute("src", `https://iinei.inei.gob.pe/iinei/asistencia/fotos/${el.USUARIO._text}.jpg`): ''
+                                            }
+
+                                        } else {
+                                            console.log("No se encontró un patrón válido.");
+                                        }
+
+
+                                        
                                     }
-                                    el.CARGO_ID._text== 22 ? document.querySelector("#logoimg").setAttribute("src", `https://iinei.inei.gob.pe/iinei/asistencia/fotos/${el.USUARIO._text}.jpg`): ''
+                                    
 
 
                                     if(el.CARGO_ID._text== 21){
@@ -925,7 +959,7 @@
                         //console.log(arrUsu, arrVivi)
                         
                         setTimeout(() => {
-                            agregarDatosPrincipal(arrUsu,arrConglo ,arrVivi, segmen)
+                            agregarDatosPrincipal(arrUsu,arrConglo ,arrVivi, segmen, marco)
                         }, 1500);
 
                     })
@@ -1145,7 +1179,7 @@
                 if (responseData) {
                 console.log('Respuesta del servidor:', responseData);
 
-                alert(`Se insertó al servidor ${nomarchi}`)
+                alert(`Se insertó al servidor  ${nomarchi}`)
 
                   setTimeout(() => {
                     window.location.href = "html/index5.html";
